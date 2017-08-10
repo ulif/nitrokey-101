@@ -30,3 +30,5 @@ As a result you should be able to get:
     Bus 001 Device 002: ID 20a0:4108 Clay Logic
     Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
 
+A device with ID ``20a0:4108`` must appear. The ID represents a `Nitrokey Pro`
+device.
