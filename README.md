@@ -32,3 +32,43 @@ As a result you should be able to get:
 
 A device with ID ``20a0:4108`` must appear. The ID represents a `Nitrokey Pro`
 device.
+
+Then, inside the guest, install some packages we will need:
+
+    (ubuntu@ubuntu-xenial):~$ sudo apt-get install libccid scdaemon
+
+Finally, copy over the accompanied `udev`-rules:
+
+    (ubuntu@ubuntu-xenial):~$ sudo cp /vagrant/41-nitrokey.rules /etc/udev/rules.d
+
+and back on the host, restart the vagrant machine.
+
+    $ vagrant reload
+
+Now, if you login to your vagrant box and plugin the Nitrokey, you should be
+able to retrieve some data using `gpg`:
+
+    (ubuntu@ubuntu-xenial):~$ gpg --card-status
+    Application ID ...: D2760011240102010005100038E30000
+    Version ..........: 2.1
+    Manufacturer .....: ZeitControl
+    Serial number ....: 000036E3
+    Name of cardholder: [not set]
+    Language prefs ...: de
+    Sex ..............: unspecified
+    URL of public key : [not set]
+    Login data .......: [not set]
+    Private DO 1 .....: [not set]
+    Private DO 2 .....: [not set]
+    Signature PIN ....: forced
+    Key attributes ...: 2048R 2048R 2048R
+    Max. PIN lengths .: 32 32 32
+    PIN retry counter : 3 0 3
+    Signature counter : 0
+    Signature key ....: [none]
+    Encryption key....: [none]
+    Authentication key: [none]
+    General key info..: [none]
+
+If the output looks like the one above, then you are done.
+
