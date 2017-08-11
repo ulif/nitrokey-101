@@ -13,7 +13,7 @@ The following describes how to do things with Nitrokey devices.
 Setup a vagrant box.
 
 You can use the accompanied ``Vagrantfile`` to setup a `vagrant` instance
-running `virtualbox`-based Ubuntu-xenial.
+running a `virtualbox`-based Ubuntu 16.04 'Xenial'.
 
 To access any USB device in your virtual vagrant guest, you must (on the host,
 not the guest) be member of the `vboxusers` group.
