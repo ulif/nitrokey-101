@@ -18,4 +18,10 @@ Vagrant.configure("2") do |config|
     vb.memory = "1024"
   end
 
+  config.vm.provision "shell", inline: "apt-get -y update"
+  config.vm.provision "shell", inline: "apt-get -y install python2.7 aptitude"
+  config.vm.provision "ansible" do |ansible|
+      ansible.verbose = "v"
+      ansible.playbook = "provision.yml"
+  end
 end

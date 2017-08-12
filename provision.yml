@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: no
+  vars:
+    ansible_python_interpreter: /usr/bin/python2.7
+  tasks:
+  - name: Update cache if not done in last 24 hours.
+    apt: update_cache=yes cache_valid_time=86400
+    become: yes
+
+  - name: Aptitude safe-upgrade
+    apt: upgrade=safe
+    become: yes
+
+  - name: Install system packages
+    become: yes
+    package:
+      name={{ item }}
+      state=present
+    with_items:
+      - libccid
+      - scdaemon
