@@ -73,6 +73,23 @@ able to retrieve some data using `gpg`:
 If the output looks like the one above, then you are done.
 
 
+### Generating Entropy in a Vagrant Box
+
+If the generation of passwords takes very long time because of missing entropy,
+you can follow the hints at:
+
+  https://major.io/2007/07/01/check-available-entropy-in-linux/#comment-23651
+
+but be aware that keys created on such a box are worthless. For testing and
+playing around, however, it is okay and comes down to:
+
+    $ sudo apt-get install rng-tools
+    $ sudo bash
+    # echo "HRNGDEVICE=/dev/urandom" >> /etc/default/rng-tools
+    # exit
+    $ sudo service rng-tools restart
+
+
 ## Resetting to Factory Defaults
 
 If you terribly messed up your setup or just forgot your passwords, there is
