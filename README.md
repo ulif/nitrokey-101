@@ -72,3 +72,30 @@ able to retrieve some data using `gpg`:
 
 If the output looks like the one above, then you are done.
 
+
+## Resetting to Factory Defaults
+
+If you terribly messed up your setup or just forgot your passwords, there is
+still a possibility to reset your Nitrokey. The price, of course, is loss of
+all data stored on the stick.
+
+The different possibilitites are listed on
+
+    https://www.nitrokey.com/documentation/how-reset-nitrokey
+
+The easiest way for Linux users with a fairly recent `gpg` version (>= 2.1)
+installed, is to run:
+
+    $ gpg2 --card-edit
+
+then, selecting ``"admin"`` followed by ``"factory-reset"``.
+
+
+## Step #1: Change PINs
+
+The Nitrokey Pro uses two PINs. A user PIN (default: `123456`) and an admin PIN
+(default: `12345678`). You want to change these as the very first step:
+
+    $ gpg --change-pin
+
+and change the user PIN and after that the admin PIN.
