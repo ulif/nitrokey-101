@@ -1,0 +1,37 @@
+--- libccid_Info.plist-trusty
++++ libccid_Info.plist-bb
+@@ -101,6 +101,10 @@
+ 
+ 	<key>ifdVendorID</key>
+ 	<array>
++        <string>0x20A0</string>
++        <string>0x20A0</string>
++        <string>0x20A0</string>
++        <string>0x20A0</string>
+ 		<string>0x072F</string>
+ 		<string>0x09C3</string>
+ 		<string>0x09C3</string>
+@@ -352,6 +356,10 @@
+ 
+ 	<key>ifdProductID</key>
+ 	<array>
++        <string>0x4108</string>
++        <string>0x4109</string>
++        <string>0x4211</string>
++        <string>0x4230</string>
+ 		<string>0x90CC</string>
+ 		<string>0x0013</string>
+ 		<string>0x0014</string>
+@@ -603,7 +611,11 @@
+ 
+ 	<key>ifdFriendlyName</key>
+ 	<array>
+-		<string>ACS ACR 38U-CCID</string>
++	    <string>Nitrokey Pro</string>
++        <string>Nitrokey Storage</string>
++        <string>Nitrokey Start</string>
++        <string>Nitrokey HSM</string>
++ 	    <string>ACS ACR 38U-CCID</string>
+ 		<string>ActivIdentity USB Reader V3</string>
+ 		<string>ActivIdentity Activkey_Sim</string>
+ 		<string>Alcor Micro AU9520</string>

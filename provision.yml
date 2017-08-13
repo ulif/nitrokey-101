@@ -29,3 +29,10 @@
         owner: root
         group: root
         mode: 0644
+
+  - name: patch libccid config
+    become: yes
+    patch:
+        src: "libccid_Info.plist.diff"
+        dest: "/etc/libccid_Info.plist"
+    when: ansible_distribution_release == "trusty"
