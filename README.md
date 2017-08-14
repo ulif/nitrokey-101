@@ -113,6 +113,56 @@ then, selecting ``"admin"`` followed by ``"factory-reset"``.
 The Nitrokey Pro uses two PINs. A user PIN (default: `123456`) and an admin PIN
 (default: `12345678`). You want to change these as the very first step:
 
-    $ gpg --change-pin
+    $ gpg2 --change-pin
 
 and change the user PIN and after that the admin PIN.
+
+
+## Step #2: Edit your Nitrokey Pro with GPG
+
+Go into `gpg2` edit mode to edit attributes of the ``Nitrokey``. This will drop
+you into a special shell.
+
+    $ gpg2 --card-edit
+    gpg/card>
+
+With ``help`` you can get an overview of what is possible:
+
+    gpg/card> help
+    quit           quit this menu
+    admin          show admin commands
+    help           show this help
+    list           list all available data
+    fetch          fetch the key specified in the card URL
+    passwd         menu to change or unblock the PIN
+    verify         verify the PIN and list all data
+    unblock        unblock the PIN using a Reset Code
+
+If you enter "admin", there will be more possibilieties:
+
+    gpg/card> admin
+    Admin commands are allowed
+
+    gpg/card> help
+    quit           quit this menu
+    admin          show admin commands
+    help           show this help
+    list           list all available data
+    name           change card holder's name
+    url            change URL to retrieve key
+    fetch          fetch the key specified in the card URL
+    login          change the login name
+    lang           change the language preferences
+    sex            change card holder's sex
+    cafpr          change a CA fingerprint
+    forcesig       toggle the signature force PIN flag
+    generate       generate new keys
+    passwd         menu to change or unblock the PIN
+    verify         verify the PIN and list all data
+    unblock        unblock the PIN using a Reset Code
+    factory-reset  destroy all keys and data
+
+To quit the shell, just enter "quit":
+
+    gpg/card> quit
+
