@@ -19,7 +19,9 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: "apt-get -y update"
+  # older `ansible` require `python2.7` and `aptitude`.
   config.vm.provision "shell", inline: "apt-get -y install python2.7 aptitude"
+  # comment out the following block, if you do not have `ansible` installed.
   config.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.playbook = "provision.yml"
