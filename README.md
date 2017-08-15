@@ -120,6 +120,8 @@ and change the user PIN and after that the admin PIN.
 
 ## Step #2: Edit your Nitrokey Pro with GPG
 
+Here are some basic steps to get used to the GPG environment.
+
 Go into `gpg2` edit mode to edit attributes of the ``Nitrokey``. This will drop
 you into a special shell.
 
@@ -165,4 +167,79 @@ If you enter "admin", there will be more possibilieties:
 To quit the shell, just enter "quit":
 
     gpg/card> quit
+
+
+## Step #3: Create GPG Keys
+
+Plug you Nitrokey Pro into the computer. Then start `gpg2`, go into admin mode
+and generate the keys.
+
+    $ gpg2 --card-edit
+    gpg/card> admin
+    gpg/card> generate
+
+This can last very, very, long. Especially, if you are on a virtual box.
+
+When asked, please create a backup of the key generated, as you will have use
+for the public part of the key, which will otherwise not be available.
+
+
+## Use Nitrokey Pro for SSH Login on Remote Servers
+
+1) Create GPG keys as shown above. Make sure, that the public part of the key
+   is already available locally. I.e.:
+
+    $ gpg2 -k
+
+    should list your key generated above, while
+
+    $ gpg2 -K
+
+    should fail.
+
+2) Enable SSH support of gpg-agent in ~/.gnupg/gpg-agent.conf:
+
+    enable-ssh-support
+
+3) In "~/.profile" add
+
+    export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+
+4) In "~/.bashrc" add
+
+    GPG_TTY=$(/usr/bin/tty)
+    SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+    export GPG_TTY SSH_AUTH_SOCK
+    echo UPDATESTARTUPTTY | gpg-connect-agent
+    # gpg-connect-agent reloadagent /bye
+
+5) Get the "keygrip" of your Nitrokey authentication key:
+
+    $ gpg2 --with-keygrip -k joe
+    pub   rsa2048/AA069E8D 2017-05-13 [SC]
+          Keygrip = C885218CE63BC64B64359F1A16AB685F831B716B
+    uid         [ultimate] Joe Doe <joe@sample.org>
+    sub   rsa2048/128FA065 2017-05-13 [A]
+          Keygrip = CD4A1911AC15AC20785C8D2A0C1BF174A96CA6EC
+    sub   rsa2048/4FD20E45 2017-05-13 [E]
+          Keygrip = FBCCB48EA62FCF9E12378B827688AF643C3EEFAE
+
+   Look for the (A)uthentication key and add the respective keygrip in
+   ~/.gnupg/sshcontrol:
+
+       # file ~/.gnupg/sshcontrol
+       CD4A1911AC15AC20785C8D2A0C1BF174A96CA6EC
+
+6) Extract the key in a form suitable to be used in ``authorized_keys``:
+
+    $ ssh-add -L
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCWiPacBhi8q1kR2SaoQGWP9K+Grwc8UvI5q
+    cLXrc6zfg3NHW2qKUb3gzvEEuSXkdhLoIrPQiP+p/lArGTHF6t4TaK9cL+LkaIq/gxNUspDyQ
+    YJQaYIWQzVqjbln6rCRtAfuLMX29W7IbGOV1sdeLLw6YvO7iFrs/S1JAR8My3hE495Gb7lNN1
+    lGYkXyysXdFOFP+OPfA6GppQE7TuEW/78NNrYY3p7QJg10MMnx1nV7Be3CDJSj6ZcerP7Wg0k
+    RLTDOp+5CPfCxLUbapIKnkDEY7651Y1TPPd3xc6VGN4sU+Di5qSpsllQWelijoBS+Dc1CqmdT
+    9j881xqyQmKNhYz cardno:000500002FE1
+
+7) Add this key to your remote ``authorized_keys``
+
 
