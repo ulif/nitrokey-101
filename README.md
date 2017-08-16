@@ -12,11 +12,17 @@ The following describes how to do things with Nitrokey devices.
 
 Setup a vagrant box.
 
-You can use the accompanied ``Vagrantfile`` to setup a `vagrant` instance
-running a `virtualbox`-based Ubuntu 16.04 'Xenial'.
+You can use the accompanied ``Vagrantfile`` to setup two `vagrant` instances
+running a `virtualbox`-based Ubuntu 16.04 'xenial' and a Ubuntu 14.04 'trusty'.
 
-To access any USB device in your virtual vagrant guest, you must (on the host,
-not the guest) be member of the `vboxusers` group.
+The respective instances are called ``xenial`` and ``trusty`` respectively.
+
+Please note, that by default both instances are provisioned using `ansible`. If
+you do not have `ansible` installed, you can do all stuff from `provision.yml`
+manually.
+
+To access any USB device in your virtual vagrant guests, you must (on the host,
+not the guests) be member of the `vboxusers` group.
 
     $ sudo add <myusername> vboxusers
 
@@ -33,9 +39,15 @@ As a result you should be able to get:
 A device with ID ``20a0:4108`` must appear. The ID represents a `Nitrokey Pro`
 device.
 
+All other preparations should be done automatically by the local
+`provision.yml` used by `ansible`.
+
+
+### Setting up the virtualboxes manually
+
 Then, inside the guest, install some packages we will need:
 
-    (ubuntu@ubuntu-xenial):~$ sudo apt-get install libccid scdaemon
+    (ubuntu@ubuntu-xenial):~$ sudo apt-get install libccid scdaemon gnupg2
 
 Finally, copy over the accompanied `udev`-rules:
 
