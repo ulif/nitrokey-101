@@ -95,11 +95,9 @@ you can follow the hints at:
 but be aware that keys created on such a box are worthless. For testing and
 playing around, however, it is okay and comes down to:
 
-    $ sudo apt-get install rng-tools
-    $ sudo bash
-    # echo "HRNGDEVICE=/dev/urandom" >> /etc/default/rng-tools
-    # exit
-    $ sudo service rng-tools restart
+    root@ubuntu-xenial:~# apt-get install rng-tools
+    root@ubuntu-xenial:~# echo "HRNGDEVICE=/dev/urandom" >> /etc/default/rng-tools
+    root@ubuntu-xenial:~# service rng-tools restart
 
 
 ## Resetting to Factory Defaults
