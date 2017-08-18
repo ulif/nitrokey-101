@@ -181,7 +181,7 @@ To quit the shell, just enter "quit":
 
 ## Step #3: Create GPG Keys
 
-Plug you Nitrokey Pro into the computer. Then start `gpg2`, go into admin mode
+Plug your Nitrokey Pro into the computer. Then start `gpg2`, go into admin mode
 and generate the keys.
 
     $ gpg2 --card-edit
@@ -191,7 +191,9 @@ and generate the keys.
 This can last very, very, long. Especially, if you are on a virtual box.
 
 When asked, please create a backup of the key generated, as you will have use
-for the public part of the key, which will otherwise not be available.
+for the public part of the key, which will otherwise not be available. See
+
+  https://lists.gt.net/gnupg/users/36476#36476
 
 
 ## Use Nitrokey Pro for SSH Login on Remote Servers
