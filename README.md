@@ -201,13 +201,13 @@ for the public part of the key, which will otherwise not be available. See
 1) Create GPG keys as shown above. Make sure, that the public part of the key
    is already available locally. I.e.:
 
-    $ gpg2 -k
+       $ gpg2 -k
 
-    should list your key generated above, while
+   should list your key generated above, while
 
-    $ gpg2 -K
+       $ gpg2 -K
 
-    should fail.
+   should fail.
 
 2) Enable SSH support of gpg-agent in ~/.gnupg/gpg-agent.conf:
 
