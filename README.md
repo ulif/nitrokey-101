@@ -211,30 +211,30 @@ for the public part of the key, which will otherwise not be available. See
 
 2) Enable SSH support of gpg-agent in ~/.gnupg/gpg-agent.conf:
 
-    enable-ssh-support
+       enable-ssh-support
 
 3) In "~/.profile" add
 
-    export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+       export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 
 4) In "~/.bashrc" add
 
-    GPG_TTY=$(/usr/bin/tty)
-    SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-    export GPG_TTY SSH_AUTH_SOCK
-    echo UPDATESTARTUPTTY | gpg-connect-agent
-    # gpg-connect-agent reloadagent /bye
+       GPG_TTY=$(/usr/bin/tty)
+       SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+       export GPG_TTY SSH_AUTH_SOCK
+       echo UPDATESTARTUPTTY | gpg-connect-agent
+       # gpg-connect-agent reloadagent /bye
 
 5) Get the "keygrip" of your Nitrokey authentication key:
 
-    $ gpg2 --with-keygrip -k joe
-    pub   rsa2048/AA069E8D 2017-05-13 [SC]
-          Keygrip = C885218CE63BC64B64359F1A16AB685F831B716B
-    uid         [ultimate] Joe Doe <joe@sample.org>
-    sub   rsa2048/128FA065 2017-05-13 [A]
-          Keygrip = CD4A1911AC15AC20785C8D2A0C1BF174A96CA6EC
-    sub   rsa2048/4FD20E45 2017-05-13 [E]
-          Keygrip = FBCCB48EA62FCF9E12378B827688AF643C3EEFAE
+       $ gpg2 --with-keygrip -k joe
+       pub   rsa2048/AA069E8D 2017-05-13 [SC]
+             Keygrip = C885218CE63BC64B64359F1A16AB685F831B716B
+       uid         [ultimate] Joe Doe <joe@sample.org>
+       sub   rsa2048/128FA065 2017-05-13 [A]
+             Keygrip = CD4A1911AC15AC20785C8D2A0C1BF174A96CA6EC
+       sub   rsa2048/4FD20E45 2017-05-13 [E]
+             Keygrip = FBCCB48EA62FCF9E12378B827688AF643C3EEFAE
 
    Look for the (A)uthentication key and add the respective keygrip in
    ~/.gnupg/sshcontrol:
@@ -244,14 +244,13 @@ for the public part of the key, which will otherwise not be available. See
 
 6) Extract the key in a form suitable to be used in ``authorized_keys``:
 
-    $ ssh-add -L
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCWiPacBhi8q1kR2SaoQGWP9K+Grwc8UvI5q
-    cLXrc6zfg3NHW2qKUb3gzvEEuSXkdhLoIrPQiP+p/lArGTHF6t4TaK9cL+LkaIq/gxNUspDyQ
-    YJQaYIWQzVqjbln6rCRtAfuLMX29W7IbGOV1sdeLLw6YvO7iFrs/S1JAR8My3hE495Gb7lNN1
-    lGYkXyysXdFOFP+OPfA6GppQE7TuEW/78NNrYY3p7QJg10MMnx1nV7Be3CDJSj6ZcerP7Wg0k
-    RLTDOp+5CPfCxLUbapIKnkDEY7651Y1TPPd3xc6VGN4sU+Di5qSpsllQWelijoBS+Dc1CqmdT
-    9j881xqyQmKNhYz cardno:000500002FE1
+       $ ssh-add -L
+       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCWiPacBhi8q1kR2SaoQGWP9K+Grwc8UvI5q
+       cLXrc6zfg3NHW2qKUb3gzvEEuSXkdhLoIrPQiP+p/lArGTHF6t4TaK9cL+LkaIq/gxNUspDyQ
+       YJQaYIWQzVqjbln6rCRtAfuLMX29W7IbGOV1sdeLLw6YvO7iFrs/S1JAR8My3hE495Gb7lNN1
+       lGYkXyysXdFOFP+OPfA6GppQE7TuEW/78NNrYY3p7QJg10MMnx1nV7Be3CDJSj6ZcerP7Wg0k
+       RLTDOp+5CPfCxLUbapIKnkDEY7651Y1TPPd3xc6VGN4sU+Di5qSpsllQWelijoBS+Dc1CqmdT
+       9j881xqyQmKNhYz cardno:000500002FE1
 
 7) Add this key to your remote ``authorized_keys``
-
 
