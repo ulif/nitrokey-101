@@ -19,7 +19,7 @@ The respective instances are called ``xenial`` and ``trusty`` respectively.
 
 Please note, that by default both instances are provisioned using `ansible`. If
 you do not have `ansible` installed, you can do all stuff from `provision.yml`
-manually.
+manually. In that case comment-out the `ansible`-sections in ``Vagrantfile``.
 
 To access any USB device in your virtual vagrant guests, you must (on the host,
 not the guests) be member of the `vboxusers` group.
